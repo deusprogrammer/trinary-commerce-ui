@@ -39,12 +39,17 @@ a {
 .product-element {
   border: 1px solid black;
   margin: 10px;
-  float: left;
 }
 
 .product-element:hover {
   background: lightgray;
   color: white;
+}
+
+.product-element-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .product-image-section {
