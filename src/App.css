@@ -1,7 +1,3 @@
-body * {
-  box-sizing: content-box;
-}
-
 .App {
   text-align: center;
 }
@@ -37,31 +33,48 @@ a {
 }
 
 .product-element {
-  border: 1px solid black;
-  margin: 10px;
+  width: 90%;
+  height: 400px;
+  margin: 10px auto 10px auto;
+  border-top: 1px solid black;
 }
 
-.product-element:hover {
-  background: lightgray;
-  color: white;
+.product-info {
+  display: table;
 }
 
-.product-element-name {
+.product-info > * {
+  display: table-row;
+}
+
+.product-price button {
+  height: 30px;
+}
+
+.product-name {
+  text-align: left;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  height: 30px;
+  line-height: 30px;
 }
 
-.product-image-section {
-  display: inline-block;
-  background: black;
-  width: 200px;
-  height: 200px;
+.product-description {
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 340px;
+}
+
+.product-price {
+  text-align: center;
+  height: 30px;
 }
 
 .product-image {
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 300px;
   object-fit: contain;
 }
 

@@ -7,6 +7,8 @@ import NewProducts from './routes/NewProducts';
 import Cart from './routes/Cart';
 import Checkout from './routes/Checkout';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import logo from './logo.svg';
 import './App.css';
 
