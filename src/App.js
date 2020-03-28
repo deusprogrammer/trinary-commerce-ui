@@ -24,8 +24,6 @@ class App extends React.Component {
                         <h1>HEADER GOES HERE</h1>
                     </header>
                     <Switch>
-                        <Route path={`${process.env.PUBLIC_URL}/products`} exact component={Products}/>
-                        <Route path={`${process.env.PUBLIC_URL}/products/new`} exact component={NewProducts}/>
                         <Route path={`${process.env.PUBLIC_URL}/products/:id`} exact component={Product} />
                         <Route path={`${process.env.PUBLIC_URL}/categories`} exact component={Categories} />
                         <Route path={`${process.env.PUBLIC_URL}/categories/:id`} exact component={Category} />
