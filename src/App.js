@@ -29,7 +29,7 @@ class App extends React.Component {
                         <Route path={`${process.env.PUBLIC_URL}/categories/:id`} exact component={Category} />
                         <Route path={`${process.env.PUBLIC_URL}/cart`} exact component={Cart} />
                         <Route path={`${process.env.PUBLIC_URL}/checkout`} exact component={Checkout} />
-                        <Redirect to={`${process.env.PUBLIC_URL}/products/new`} />
+                        <Redirect to={`${process.env.PUBLIC_URL}/categories`} />
                     </Switch>
                 </div>
             </Router>
