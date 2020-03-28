@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import config from '../utils/config';
+import CartHelper from '../utils/CartHelper';
 import ProductList from '../components/ProductList';
 
 export default class Categories extends React.Component {
@@ -47,7 +48,10 @@ export default class Categories extends React.Component {
                     :
                     <ProductList 
                         products={this.state.products}
-                        page={this.state.page} 
+                        page={this.state.page}
+                        onAddToCart={(product) => {
+                            CartHelper.addToCart(product)
+                        }}
                         onPageChange={(page) => {
                             this.setState({products: null, page})
                             this.getPage(page)

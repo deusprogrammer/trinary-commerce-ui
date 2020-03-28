@@ -1,17 +1,18 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
-import Products from './routes/Products';
 import Product from './routes/Product';
-import NewProducts from './routes/NewProducts';
 import Categories from './routes/Categories';
 import Category from './routes/Category';
 import Cart from './routes/Cart';
 import Checkout from './routes/Checkout';
 
+import CartWidget from './components/CartWidget';
+
+import CartHelper from './utils/CartHelper';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -22,6 +23,7 @@ class App extends React.Component {
                 <div className="App">
                     <header>
                         <h1>HEADER GOES HERE</h1>
+                        <div style={{textAlign: "right", width: "90%", margin: "auto"}}><CartWidget contents={CartHelper.getCart()} /></div>
                     </header>
                     <Switch>
                         <Route path={`${process.env.PUBLIC_URL}/products/:id`} exact component={Product} />
