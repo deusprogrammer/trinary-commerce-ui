@@ -88,3 +88,11 @@ a {
   width: 800px;
   height: 600px;
 }
+
+.category-list {
+  padding: 0px;
+}
+
+.category-list-item {
+  list-style-type: none;
+}

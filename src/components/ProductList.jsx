@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ProductElement from './ProductElement';
+import Paginator from './Paginator';
 
 // TODO Add filters to this element
 export default (props) => {
@@ -15,6 +16,7 @@ export default (props) => {
                     )
                 })}
                 <div style={{clear: "both"}}></div>
+                <Paginator page={props.page} onPageChange={(page) => {props.onPageChange(page)}} />
             </div>
         ) 
     }

@@ -4,6 +4,8 @@ import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-rout
 import Products from './routes/Products';
 import Product from './routes/Product';
 import NewProducts from './routes/NewProducts';
+import Categories from './routes/Categories';
+import Category from './routes/Category';
 import Cart from './routes/Cart';
 import Checkout from './routes/Checkout';
 
@@ -11,6 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import logo from './logo.svg';
 import './App.css';
+
 
 class App extends React.Component {
     render() {
@@ -24,6 +27,8 @@ class App extends React.Component {
                         <Route path={`${process.env.PUBLIC_URL}/products`} exact component={Products}/>
                         <Route path={`${process.env.PUBLIC_URL}/products/new`} exact component={NewProducts}/>
                         <Route path={`${process.env.PUBLIC_URL}/products/:id`} exact component={Product} />
+                        <Route path={`${process.env.PUBLIC_URL}/categories`} exact component={Categories} />
+                        <Route path={`${process.env.PUBLIC_URL}/categories/:id`} exact component={Category} />
                         <Route path={`${process.env.PUBLIC_URL}/cart`} exact component={Cart} />
                         <Route path={`${process.env.PUBLIC_URL}/checkout`} exact component={Checkout} />
                         <Redirect to={`${process.env.PUBLIC_URL}/products/new`} />
