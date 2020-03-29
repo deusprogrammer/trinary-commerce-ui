@@ -10,9 +10,9 @@ export default (props) => {
     if (props.products) {
         component = (
             <div>
-                { props.products.map(product => {
+                { props.products.map((product, index) => {
                     return (
-                        <ProductElement product={product} onAddToCart={(product) => props.onAddToCart(product)} />
+                        <ProductElement key={`product-${index}-${product.id}`} product={product} onAddToCart={(product) => props.onAddToCart(product)} />
                     )
                 })}
                 <div style={{clear: "both"}}></div>

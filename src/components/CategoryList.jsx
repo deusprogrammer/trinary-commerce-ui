@@ -7,9 +7,9 @@ export default (props) => {
         <div>
             { props.categories ?
                 <ul className="category-list">
-                {props.categories.map(category => {
+                {props.categories.map((category, index) => {
                     return (
-                        <li className="category-list-item"><Link to={`${process.env.PUBLIC_URL}/categories/${category.id}`}>{category.name}</Link></li>
+                        <li key={`category-${index}-${category.id}`} className="category-list-item"><Link to={`${process.env.PUBLIC_URL}/categories/${category.id}`}>{category.name}</Link></li>
                     )
                 })}
                 </ul> : null

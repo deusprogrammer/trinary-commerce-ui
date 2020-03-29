@@ -22,8 +22,8 @@ export default class Categories extends React.Component {
 
     render() {
         return (
-            <div>
-                <h3>Categories</h3>
+            <div style={{textAlign: "left"}}>
+                <h6>Categories</h6>
                 { this.state.error ?
                     <p>{this.state.error}</p>
                     :

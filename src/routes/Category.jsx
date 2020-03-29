@@ -23,9 +23,17 @@ export default class Categories extends React.Component {
             })
     }
 
-    getPage = (page) => {
-        console.log("GET PAGE: " + page)
+    componentWillReceiveProps() {
+        axios.get(`${config.baseUrl}/categories/${this.props.match.params.id}`)
+            .then(categoryResponse => {
+                this.setState({category: categoryResponse.data.name})
+                this.getPage(0)
+            }).catch(error => {
+                this.setState({error})
+            })
+    }
 
+    getPage = (page) => {
         if (page < 0) {
             return
         }

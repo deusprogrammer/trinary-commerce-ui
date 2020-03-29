@@ -95,6 +95,21 @@ a {
 
 .category-list-item {
   list-style-type: none;
+  border-bottom: 1px solid black;
+}
+
+.category-list-item a {
+  text-decoration: none;
+}
+
+.category-list-item:hover {
+  background: gray;
+  color: white;
+}
+
+.category-list-item:hover a {
+  background: gray;
+  color: white;
 }
 
 .cart-product {
