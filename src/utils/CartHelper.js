@@ -1,15 +1,19 @@
 export default {
     addToCart: (product) => {
-        alert(`Added ${product.name} to cart`)
-        let cart = window.localStorage.getItem("cart") || "[]"
+        let cart = window.localStorage.getItem("cart")
         cart = JSON.parse(cart)
+        if (!cart) {
+            cart = []
+        }
         cart.push(product)
         window.localStorage.setItem("cart", JSON.stringify(cart))
     },
     removeFromCart: (productToRemove) => {
-        alert(`Removed ${productToRemove.name} from cart`)
         let cart = window.localStorage.getItem("cart") || "[]"
         cart = JSON.parse(cart)
+        if (!cart) {
+            cart = []
+        }
         let filteredCart = cart.filter((product) => {
             return product.id !== productToRemove.id
         })
