@@ -7,7 +7,6 @@ import ProductList from '../components/ProductList';
 
 export default class Category extends React.Component {
     state = {
-        page: 1,
         category: null,
         products: null,
         hasNext: false,
