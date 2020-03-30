@@ -16,7 +16,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Home from './routes/Home';
 import SearchWidget from './components/SearchWidget';
+import ResultDisplay from './routes/ResultDisplay';
 
+import connect from './utils/ReduxHelper';
 
 class App extends React.Component {
     render() {
@@ -38,6 +40,7 @@ class App extends React.Component {
                         <div className="content-display col-sm-8 col-md-9 col-lg-9">
                             <Switch>
                                 <Route path={`${process.env.PUBLIC_URL}/`} exact component={Home} />
+                                <Route path={`${process.env.PUBLIC_URL}/results/:search`} exact component={ResultDisplay} />
                                 <Route path={`${process.env.PUBLIC_URL}/products/:id`} exact component={Product} />
                                 <Route path={`${process.env.PUBLIC_URL}/categories/:id`} exact component={Category} />
                                 <Route path={`${process.env.PUBLIC_URL}/cart`} exact component={Cart} />
@@ -52,4 +55,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default connect(App);
