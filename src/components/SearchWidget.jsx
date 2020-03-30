@@ -12,7 +12,7 @@ class SearchWidget extends React.Component {
 
     search = () => {
         let base64Search = btoa(this.state.searchString.replace(/\s+/g, ","))
-        this.props.history.push(`${process.env.PUBLIC_URL}/results/${base64Search}`)
+        this.props.history.push(`${process.env.PUBLIC_URL}/results/${base64Search}/1`)
     }
 
     render() {

@@ -40,9 +40,9 @@ class App extends React.Component {
                         <div className="content-display col">
                             <Switch>
                                 <Route path={`${process.env.PUBLIC_URL}/`} exact component={Home} />
-                                <Route path={`${process.env.PUBLIC_URL}/results/:search`} exact component={ResultDisplay} />
+                                <Route path={`${process.env.PUBLIC_URL}/results/:search/:page`} exact component={ResultDisplay} />
                                 <Route path={`${process.env.PUBLIC_URL}/products/:id`} exact component={Product} />
-                                <Route path={`${process.env.PUBLIC_URL}/categories/:id`} exact component={Category} />
+                                <Route path={`${process.env.PUBLIC_URL}/categories/:id/:page`} exact component={Category} />
                                 <Route path={`${process.env.PUBLIC_URL}/cart`} exact component={Cart} />
                                 <Route path={`${process.env.PUBLIC_URL}/checkout`} exact component={Checkout} />
                                 <Redirect to={`${process.env.PUBLIC_URL}/`} />

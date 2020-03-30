@@ -17,7 +17,10 @@ export default (props) => {
                         )
                     })}
                 </div>
-                <Paginator page={props.page} onPageChange={(page) => {props.onPageChange(page)}} />
+                <Paginator 
+                    page={props.page} 
+                    hasNext={props.hasNext}
+                    onPageChange={(page) => {props.onPageChange(page)}} />
             </div>
         ) 
     }

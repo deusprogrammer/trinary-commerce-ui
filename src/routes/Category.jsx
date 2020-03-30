@@ -5,11 +5,12 @@ import config from '../utils/config';
 import CartHelper from '../utils/CartHelper';
 import ProductList from '../components/ProductList';
 
-export default class Categories extends React.Component {
+export default class Category extends React.Component {
     state = {
-        page: 0,
+        page: 1,
         category: null,
         products: null,
+        hasNext: false,
         error: null
     }
 
@@ -17,7 +18,7 @@ export default class Categories extends React.Component {
         axios.get(`${config.baseUrl}/categories/${this.props.match.params.id}`)
             .then(categoryResponse => {
                 this.setState({category: categoryResponse.data.name})
-                this.getPage(0)
+                this.getPage(parseInt(this.props.match.params.page))
             }).catch(error => {
                 this.setState({error})
             })
@@ -27,7 +28,7 @@ export default class Categories extends React.Component {
         axios.get(`${config.baseUrl}/categories/${this.props.match.params.id}`)
             .then(categoryResponse => {
                 this.setState({category: categoryResponse.data.name})
-                this.getPage(0)
+                this.getPage(parseInt(this.props.match.params.page))
             }).catch(error => {
                 this.setState({error})
             })
@@ -38,9 +39,9 @@ export default class Categories extends React.Component {
             return
         }
 
-        axios.get(`${config.baseUrl}/categories/${this.props.match.params.id}/products?page=${page}&pageSize=10`)
+        axios.get(`${config.baseUrl}/categories/${this.props.match.params.id}/products?page=${page - 1}&pageSize=10`)
             .then(productResponse => {
-                this.setState({products: productResponse.data, page})
+                this.setState({products: productResponse.data, hasNext: productResponse.headers['X-Next-Page'] !== null})
             })
             .catch(error => {
                 this.setState({error})
@@ -56,13 +57,12 @@ export default class Categories extends React.Component {
                     :
                     <ProductList 
                         products={this.state.products}
-                        page={this.state.page}
-                        onAddToCart={(product) => {
-                            CartHelper.addToCart(product)
-                        }}
+                        page={parseInt(this.props.match.params.page)}
+                        hasNext={this.state.hasNext}
                         onPageChange={(page) => {
-                            this.setState({products: null, page})
-                            this.getPage(page)
+                            this.setState({products: null}, () => {
+                                this.props.history.push(`${process.env.PUBLIC_URL}/categories/${this.props.match.params.id}/${page}`)
+                            })
                         }} 
                         />
                 }
