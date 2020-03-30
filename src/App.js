@@ -24,20 +24,20 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div className="App" style={{width: "90%", margin: "auto"}}>
+                <div className="container">
                     <header style={{marginBottom: "10px"}}>
                         <h1>HEADER GOES HERE</h1>
                         <div className="header-bar row">
-                            <div className="col-md-2" style={{textAlign: "left"}}><Link to="/">Home</Link></div>
-                            <div className="col-md-8" style={{textAlign: "center"}}><SearchWidget /></div>
-                            <div className="col-md-2" style={{textAlign: "right"}}><CartWidget contents={this.props.cartContents} /></div>
+                            <div className="col-2" style={{textAlign: "left"}}><Link to="/">Home</Link></div>
+                            <div className="col" style={{textAlign: "center"}}><SearchWidget /></div>
+                            <div className="col-2" style={{textAlign: "right"}}><CartWidget contents={this.props.cartContents} /></div>
                         </div>
                     </header>
                     <div className="content-area row">
-                        <div className="categories col-sm-4 col-md-3 col-lg-3">
+                        <div className="categories col-xs-8 col-lg-2">
                             <Categories />
                         </div>
-                        <div className="content-display col-sm-8 col-md-9 col-lg-9">
+                        <div className="content-display col">
                             <Switch>
                                 <Route path={`${process.env.PUBLIC_URL}/`} exact component={Home} />
                                 <Route path={`${process.env.PUBLIC_URL}/results/:search`} exact component={ResultDisplay} />

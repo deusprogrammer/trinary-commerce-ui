@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import CartHelper from '../utils/CartHelper';
-
 import connect from '../utils/ReduxHelper';
 
 class Cart extends React.Component {

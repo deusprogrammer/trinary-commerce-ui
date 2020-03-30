@@ -10,18 +10,18 @@ let ProductElement = (props) => {
     if (props.product) {
         component = (
             <div className="product-element row">
-                <div className="product-display col-md-3">
+                <div className="product-display">
                     <span className="product-image-section">
                         <Link to={`${process.env.PUBLIC_URL}/products/${props.product.id}`}>
                         <img className="product-image"src={props.product.imageHref} />
                         </Link>
                     </span>
                 </div>
-                <div className="product-info col-md-9">
+                <div className="product-info col">
                     <div className="product-name">
                         <strong>{props.product.name}</strong>
                     </div>
-                    <div className="product-description">
+                    <div className="product-description overflow-auto">
                         <div style={{display: "table-cell", verticalAlign: "middle"}}>
                             {props.product.description.split("/\r?\n/").map((paragraph, index) => {
                                 return <p key={`p-${index}`}>{paragraph}</p>

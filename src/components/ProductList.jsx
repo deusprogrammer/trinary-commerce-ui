@@ -10,12 +10,13 @@ export default (props) => {
     if (props.products) {
         component = (
             <div>
-                { props.products.map((product, index) => {
-                    return (
-                        <ProductElement key={`product-${index}-${product.id}`} product={product} />
-                    )
-                })}
-                <div style={{clear: "both"}}></div>
+                <div className="container">
+                    { props.products.map((product, index) => {
+                        return (
+                            <ProductElement key={`product-${index}-${product.id}`} product={product} />
+                        )
+                    })}
+                </div>
                 <Paginator page={props.page} onPageChange={(page) => {props.onPageChange(page)}} />
             </div>
         ) 

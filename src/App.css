@@ -32,9 +32,11 @@ a {
   color: black;
 }
 
+.product-display {
+  width: 300px;
+}
+
 .product-element {
-  width: 90%;
-  height: 400px;
   margin: 10px auto 10px auto;
   border-top: 1px solid black;
 }
@@ -64,12 +66,10 @@ a {
   text-align: left;
   text-overflow: ellipsis;
   overflow: hidden;
-  height: 340px;
 }
 
 .product-price {
   text-align: center;
-  height: 30px;
 }
 
 .product-image {
