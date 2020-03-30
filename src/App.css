@@ -115,3 +115,17 @@ a {
 .cart-product {
   list-style-type: none;
 }
+
+.header-bar {
+  background: gray;
+  color: white;
+}
+
+.header-bar a {
+  color: white;
+  text-decoration: none;
+}
+
+.header-bar a:hover {
+  color: yellow;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect, Link} from 'react-router-dom';
 
 import Product from './routes/Product';
 import Categories from './routes/Categories';
@@ -21,12 +21,15 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <div className="App">
-                    <header>
+                <div className="App" style={{width: "90%", margin: "auto"}}>
+                    <header style={{marginBottom: "10px"}}>
                         <h1>HEADER GOES HERE</h1>
-                        <div style={{textAlign: "right", width: "90%", margin: "auto"}}><CartWidget contents={CartHelper.getCart()} /></div>
+                        <div className="header-bar row">
+                            <div className="col-md-6" style={{textAlign: "left"}}><Link to="/">Home</Link></div>
+                            <div className="col-md-6" style={{textAlign: "right"}}><CartWidget contents={CartHelper.getCart()} /></div>
+                        </div>
                     </header>
-                    <div className="content-area row" style={{width: "90%", margin: "auto"}}>
+                    <div className="content-area row">
                         <div className="categories col-sm-4 col-md-3 col-lg-3">
                             <Categories />
                         </div>
