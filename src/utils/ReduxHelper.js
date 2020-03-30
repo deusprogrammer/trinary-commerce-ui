@@ -1,9 +1,8 @@
 import {connect} from 'react-redux'
-import Calls from '../thunks/Calls'
 
 let mapStateToProps = (state) => {
     return {
-        cartContents: state.cartContents
+        cartContents: state.cart
     }
 }
 

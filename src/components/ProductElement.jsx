@@ -2,7 +2,9 @@ import React from 'react';
 
 import {Link} from 'react-router-dom';
 
-export default (props) => {
+import connect from '../utils/ReduxHelper';
+
+let ProductElement = (props) => {
     let component = null;
 
     if (props.product) {
@@ -21,8 +23,8 @@ export default (props) => {
                     </div>
                     <div className="product-description">
                         <div style={{display: "table-cell", verticalAlign: "middle"}}>
-                            {props.product.description.split("/\r?\n/").map(paragraph => {
-                                return <p>{paragraph}</p>
+                            {props.product.description.split("/\r?\n/").map((paragraph, index) => {
+                                return <p key={`p-${index}`}>{paragraph}</p>
                             })}
                         </div>
                     </div>
@@ -35,7 +37,7 @@ export default (props) => {
                         </span>
                         <button 
                             onClick={(e) => {
-                                props.onAddToCart(props.product);
+                                props.addToCart(props.product);
                                 e.stopPropagation();
                             }}>
                             Add to Cart
@@ -52,3 +54,5 @@ export default (props) => {
         </div>
     )
 }
+
+export default connect(ProductElement)

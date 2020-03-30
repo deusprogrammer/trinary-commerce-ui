@@ -30,7 +30,7 @@ class App extends React.Component {
                         <div className="header-bar row">
                             <div className="col-md-2" style={{textAlign: "left"}}><Link to="/">Home</Link></div>
                             <div className="col-md-8" style={{textAlign: "center"}}><SearchWidget /></div>
-                            <div className="col-md-2" style={{textAlign: "right"}}><CartWidget contents={CartHelper.getCart()} /></div>
+                            <div className="col-md-2" style={{textAlign: "right"}}><CartWidget contents={this.props.cartContents} /></div>
                         </div>
                     </header>
                     <div className="content-area row">

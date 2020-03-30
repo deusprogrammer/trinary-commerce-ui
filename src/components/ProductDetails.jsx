@@ -1,6 +1,8 @@
 import React from 'react';
 
-export default (props) => {
+import connect from '../utils/ReduxHelper';
+
+let ProductDetails = (props) => {
     let component = null;
 
     if (props.product) {
@@ -21,7 +23,7 @@ export default (props) => {
                     </span>
                     <button 
                         onClick={(e) => {
-                            props.onAddToCart(props.product);
+                            props.addToCart(props.product);
                             e.stopPropagation();
                         }}>
                         Add to Cart
@@ -37,3 +39,5 @@ export default (props) => {
         </div>
     )
 }
+
+export default connect(ProductDetails)

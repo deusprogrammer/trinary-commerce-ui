@@ -12,7 +12,7 @@ export default (props) => {
             <div>
                 { props.products.map((product, index) => {
                     return (
-                        <ProductElement key={`product-${index}-${product.id}`} product={product} onAddToCart={(product) => props.onAddToCart(product)} />
+                        <ProductElement key={`product-${index}-${product.id}`} product={product} />
                     )
                 })}
                 <div style={{clear: "both"}}></div>
