@@ -21,13 +21,14 @@ let ProductElement = (props) => {
                     <div className="product-name">
                         <strong>{props.product.name}</strong>
                     </div>
-                    <div className="product-description overflow-auto">
+                    {/* <div className="product-description overflow-auto">
                         <div style={{display: "table-cell", verticalAlign: "middle"}}>
                             {props.product.description.split("/\r?\n/").map((paragraph, index) => {
                                 return <p key={`p-${index}`}>{paragraph}</p>
                             })}
                         </div>
-                    </div>
+                    </div> */}
+                    <div></div>
                     <div className="product-price">
                         <span style={{marginRight: "10px"}}>
                             {
