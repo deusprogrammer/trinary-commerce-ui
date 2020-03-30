@@ -15,6 +15,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 import Home from './routes/Home';
+import SearchWidget from './components/SearchWidget';
 
 
 class App extends React.Component {
@@ -25,8 +26,9 @@ class App extends React.Component {
                     <header style={{marginBottom: "10px"}}>
                         <h1>HEADER GOES HERE</h1>
                         <div className="header-bar row">
-                            <div className="col-md-6" style={{textAlign: "left"}}><Link to="/">Home</Link></div>
-                            <div className="col-md-6" style={{textAlign: "right"}}><CartWidget contents={CartHelper.getCart()} /></div>
+                            <div className="col-md-2" style={{textAlign: "left"}}><Link to="/">Home</Link></div>
+                            <div className="col-md-8" style={{textAlign: "center"}}><SearchWidget /></div>
+                            <div className="col-md-2" style={{textAlign: "right"}}><CartWidget contents={CartHelper.getCart()} /></div>
                         </div>
                     </header>
                     <div className="content-area row">

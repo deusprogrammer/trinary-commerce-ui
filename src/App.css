@@ -119,6 +119,7 @@ a {
 .header-bar {
   background: gray;
   color: white;
+  padding: 5px;
 }
 
 .header-bar a {
