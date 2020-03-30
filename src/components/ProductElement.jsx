@@ -11,11 +11,11 @@ let ProductElement = (props) => {
         component = (
             <div className="product-element row">
                 <div className="product-display">
-                    <span className="product-image-section">
+                    <div className="product-image-section">
                         <Link to={`${process.env.PUBLIC_URL}/products/${props.product.id}`}>
                         <img className="product-image"src={props.product.imageHref} />
                         </Link>
-                    </span>
+                    </div>
                 </div>
                 <div className="product-info col">
                     <div className="product-name">

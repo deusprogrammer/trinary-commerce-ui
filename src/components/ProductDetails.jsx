@@ -15,12 +15,12 @@ let ProductDetails = (props) => {
                     <p>{props.product.description}</p>
                 </div>
                 <div className="product-price-full">
-                    <span style={{marginRight: "10px"}}>
+                    <div style={{marginRight: "10px"}}>
                         {
                             Number(props.product.variations[0].price)
                                 .toLocaleString('en-US', { style: 'currency', currency: props.product.variations[0].currency })
                         }
-                    </span>
+                    </div>
                     <button 
                         onClick={(e) => {
                             props.addToCart(props.product);
