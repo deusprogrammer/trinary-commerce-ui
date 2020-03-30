@@ -72,8 +72,13 @@ a {
   text-align: center;
 }
 
+.product-image-section {
+  background: black;
+}
+
 .product-image {
-  width: 100%;
+  width: 200px;
+  height: 200px;
   object-fit: contain;
 }
 
@@ -128,4 +133,10 @@ a {
 
 .header-bar a:hover {
   color: yellow;
+}
+
+.product-image-full {
+  width: 800px;
+  height: 600px;
+  object-fit: contain;
 }

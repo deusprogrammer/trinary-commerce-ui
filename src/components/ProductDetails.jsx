@@ -8,9 +8,9 @@ let ProductDetails = (props) => {
     if (props.product) {
         component = (
             <div className="product-element-full">
-                <span className="product-image-section-full">
-                    <img className="product-image"src={props.product.imageHref} />
-                </span>
+                <div className="product-image-section-full">
+                    <img className="product-image-full"src={props.product.imageHref} />
+                </div>
                 <div>
                     <p>{props.product.description}</p>
                 </div>
