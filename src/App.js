@@ -26,7 +26,7 @@ class App extends React.Component {
             <Router>
                 <div className="container">
                     <header style={{marginBottom: "10px"}}>
-                        <h1>HEADER GOES HERE</h1>
+                        <h1>Knight Watch Games</h1>
                         <div className="header-bar row">
                             <div className="col-2" style={{textAlign: "left"}}><Link to="/">Home</Link></div>
                             <div className="col" style={{textAlign: "center"}}><SearchWidget /></div>
