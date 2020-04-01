@@ -19,7 +19,11 @@ let ProductElement = (props) => {
                 </div>
                 <div className="product-info col">
                     <div className="product-name">
-                        <strong>{props.product.name}</strong>
+                        <strong>
+                            <Link to={`${process.env.PUBLIC_URL}/products/${props.product.id}`}>
+                                {props.product.name}
+                            </Link>
+                        </strong>
                     </div>
                     {/* <div className="product-description overflow-auto">
                         <div style={{display: "table-cell", verticalAlign: "middle"}}>
@@ -31,13 +35,17 @@ let ProductElement = (props) => {
                     <div></div>
                     <div className="product-price">
                         <span style={{marginRight: "10px"}}>
-                            {
+                           <strong>Price : </strong> {
                                 Number(props.product.variations[0].price)
-                                    .toLocaleString('en-US', { style: 'currency', currency: props.product.variations[0].currency })
+                                    .toLocaleString('en-US',
+                                    {
+                                        style: 'currency',
+                                        currency: props.product.variations[0].currency
+                                    })
                             }
                         </span>
-                        <button 
-                            onClick={(e) => {
+                        <button className="btn btn-primary" 
+                                onClick={(e) => {
                                 props.addToCart(props.product);
                                 e.stopPropagation();
                             }}>

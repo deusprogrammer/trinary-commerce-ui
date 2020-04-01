@@ -17,9 +17,13 @@ class SearchWidget extends React.Component {
 
     render() {
         return (
-            <div>
-                <input onChange={(e) => this.searchBarChange(e.target.value)} type="text" placeholder="Search" />
-                <button onClick={() => {this.search()}}>Search</button>
+            <div className="form-row justify-content-center">
+                <div className="col-6">
+                    <input className="form-control" onChange={(e) => this.searchBarChange(e.target.value)} type="text" placeholder="Search" />
+                </div>
+                <div className="col-auto">
+                    <button className="btn btn-primary" onClick={() => {this.search()}}>Search</button>
+                </div>
             </div>
         )
     }
