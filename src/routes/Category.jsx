@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 import config from '../utils/config';
-import CartHelper from '../utils/CartHelper';
 import ProductList from '../components/ProductList';
 
 export default class Category extends React.Component {

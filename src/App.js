@@ -9,8 +9,6 @@ import Checkout from './routes/Checkout';
 
 import CartWidget from './components/CartWidget';
 
-import CartHelper from './utils/CartHelper';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';

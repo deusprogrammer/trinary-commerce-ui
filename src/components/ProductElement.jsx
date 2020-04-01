@@ -2,10 +2,13 @@ import React from 'react';
 
 import {Link} from 'react-router-dom';
 
+import { useToasts } from 'react-toast-notifications'
+
 import connect from '../utils/ReduxHelper';
 
 let ProductElement = (props) => {
     let component = null;
+    const {addToast} = useToasts()
 
     if (props.product) {
         component = (
@@ -13,7 +16,7 @@ let ProductElement = (props) => {
                 <div className="product-display">
                     <div className="product-image-section">
                         <Link to={`${process.env.PUBLIC_URL}/products/${props.product.id}`}>
-                        <img className="product-image"src={props.product.imageHref} />
+                        <img alt="product" className="product-image" src={props.product.imageHref} />
                         </Link>
                     </div>
                 </div>
@@ -45,7 +48,10 @@ let ProductElement = (props) => {
                             }
                         </span>
                         <button className="btn btn-primary" 
-                                onClick={(e) => {
+                            onClick={(e) => {
+                                addToast(`Added ${props.product.name} to cart`, {
+                                    appearance: 'info',
+                                    autoDismiss: true})
                                 props.addToCart(props.product);
                                 e.stopPropagation();
                             }}>

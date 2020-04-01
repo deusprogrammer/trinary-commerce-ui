@@ -15,7 +15,7 @@ class Cart extends React.Component {
                                 return (
                                     <div style={{display: "table-row"}}>
                                         <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
-                                            <img style={{width: "100px", height: "100px", objectFit: "contain"}} src={product.imageHref} />
+                                            <img alt="product" style={{width: "100px", height: "100px", objectFit: "contain"}} src={product.imageHref} />
                                         </div>
                                         <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
                                             <Link to={`${process.env.PUBLIC_URL}/products/${product.id}`}>{product.name}</Link>

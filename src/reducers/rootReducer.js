@@ -9,18 +9,17 @@ export default (state = initialState, action) => {
     console.log(`ACTION: ${JSON.stringify(action)}`)
 
     let newState = {...state}
+    let cart = []
     switch(action.type) {
         case "ADD_TO_CART":
-            alert(`Added ${action.product.name} to cart`)
             CartHelper.addToCart(action.product)
-            var cart = [...newState.cart]
+            cart = [...newState.cart]
             cart.push(action.product)
             newState.cart = cart
             return newState
         case "REMOVE_FROM_CART":
-            alert(`Removed ${action.product.name} from cart`)
             CartHelper.removeFromCart(action.product)
-            var cart = [...newState.cart]
+            cart = [...newState.cart]
             var filteredCart = cart.filter((product) => {
                 return product.id !== action.product.id
             })
