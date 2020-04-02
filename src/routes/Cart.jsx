@@ -17,7 +17,10 @@ class Cart extends React.Component {
 
         toast("Creating checkout on Square...please wait", {type: "info"});
 
-        axios.post(`${config.baseUrl}/orders`, {items})
+        axios.post(`${config.baseUrl}/orders`, {
+            items,
+            redirectUrl: "https://deusprogrammer.com/util/commerce/cart/success"
+        })
             .then((response) => {
                 window.location = response.data.checkoutUrl
             })
