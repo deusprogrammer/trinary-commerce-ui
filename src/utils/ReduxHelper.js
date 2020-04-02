@@ -8,8 +8,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        addToCart: (product) => {dispatch({type: "ADD_TO_CART", product})},
-        removeFromCart: (product) => {dispatch({type: "REMOVE_FROM_CART", product})},
+        addToCart: (product, variant, quantity) => {dispatch({type: "ADD_TO_CART", cartItem: {product, variant, quantity}})},
+        removeFromCart: (cartItem) => {dispatch({type: "REMOVE_FROM_CART", cartItem})},
         clearCart: () => {dispatch({type: "CLEAR_CART"})}
     }
 }

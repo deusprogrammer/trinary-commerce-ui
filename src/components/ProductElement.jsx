@@ -2,13 +2,12 @@ import React from 'react';
 
 import {Link} from 'react-router-dom';
 
-import { useToasts } from 'react-toast-notifications'
-
+import AddToCartWidget from './AddToCartWidget';
 import connect from '../utils/ReduxHelper';
 
 let ProductElement = (props) => {
     let component = null;
-    const {addToast} = useToasts()
+    //const {addToast} = useToasts()
 
     if (props.product) {
         component = (
@@ -36,28 +35,7 @@ let ProductElement = (props) => {
                         </div>
                     </div> */}
                     <div></div>
-                    <div className="product-price">
-                        <span style={{marginRight: "10px"}}>
-                           <strong>Price : </strong> {
-                                Number(props.product.variations[0].price)
-                                    .toLocaleString('en-US',
-                                    {
-                                        style: 'currency',
-                                        currency: props.product.variations[0].currency
-                                    })
-                            }
-                        </span>
-                        <button className="btn btn-primary" 
-                            onClick={(e) => {
-                                addToast(`Added ${props.product.name} to cart`, {
-                                    appearance: 'info',
-                                    autoDismiss: true})
-                                props.addToCart(props.product);
-                                e.stopPropagation();
-                            }}>
-                            Add to Cart
-                        </button>
-                    </div>
+                    <AddToCartWidget product={props.product} />
                 </div>
             </div>
         ) 

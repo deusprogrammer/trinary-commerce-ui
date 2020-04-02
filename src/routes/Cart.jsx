@@ -1,9 +1,31 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+import {toast} from 'react-toastify';
 
 import connect from '../utils/ReduxHelper';
+import config from '../utils/config';
 
 class Cart extends React.Component {
+    onCheckout = () => {
+        let items = this.props.cartContents.map(cartItem => {
+            return {
+                id: cartItem.variant.id,
+                quantity: cartItem.quantity
+            }
+        })
+
+        toast("Creating checkout on Square...please wait", {type: "info"});
+
+        axios.post(`${config.baseUrl}/orders`, {items})
+            .then((response) => {
+                window.location = response.data.checkoutUrl
+            })
+            .catch((error) => {
+                toast("Failed to create order on square", {type: "error"});
+            })
+    }
+
     render() {
         return (
             <div>
@@ -11,24 +33,59 @@ class Cart extends React.Component {
                 {this.props.cartContents && this.props.cartContents.length > 0 ?
                     <div>
                         <div style={{display: "table"}} className="cart-product">
-                            {this.props.cartContents.map(product => {
+                            {this.props.cartContents.map(cartItem => {
                                 return (
                                     <div style={{display: "table-row"}}>
                                         <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
-                                            <img alt="product" style={{width: "100px", height: "100px", objectFit: "contain"}} src={product.imageHref} />
+                                            <img alt="product" style={{width: "100px", height: "100px", objectFit: "contain"}} src={cartItem.product.imageHref} />
                                         </div>
                                         <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
-                                            <Link to={`${process.env.PUBLIC_URL}/products/${product.id}`}>{product.name}</Link>
+                                            <Link to={`${process.env.PUBLIC_URL}/products/${cartItem.product.id}`}><strong>{cartItem.product.name}</strong></Link>
+                                        </div>
+                                        <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
+                                            {cartItem.variant.name}
+                                        </div>
+                                        <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
+                                            x{cartItem.quantity}
+                                        </div>
+                                        <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
+                                            {Number(cartItem.variant.price)
+                                                .toLocaleString('en-US',
+                                                {
+                                                    style: 'currency',
+                                                    currency: cartItem.variant.currency
+                                                })}
                                         </div>
                                         <div style={{display: "table-cell", verticalAlign: "middle"}}>
-                                            <button onClick={() => {this.props.removeFromCart(product)}}>Remove</button>
+                                            <button onClick={() => {this.props.removeFromCart(cartItem)}}>Remove</button>
                                         </div>
                                     </div>
                                 )
                             })}
+                            <div style={{display: "table-row"}}>
+                                <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
+                                </div>
+                                <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
+                                </div>
+                                <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}> 
+                                </div>
+                                <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
+                                </div>
+                                <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
+                                    <strong>Total Before Tax:</strong>
+                                    {Number(this.props.cartContents.reduce((acc, cartItem) => {
+                                        return acc + cartItem.variant.price
+                                    }, 0))
+                                    .toLocaleString('en-US',
+                                    {
+                                        style: 'currency',
+                                        currency: this.props.cartContents[0].variant.currency
+                                    })}
+                                </div>
+                            </div>
                         </div>
                         <div style={{textAlign: "center"}}>
-                            <button onClick={() => {this.props.clearCart()}}>Empty Cart</button><button>Checkout</button>
+                            <button onClick={() => {this.props.clearCart()}}>Empty Cart</button><button onClick={() => {this.onCheckout()}}>Checkout</button>
                         </div>
                     </div> : 
                     <div>

@@ -1,7 +1,5 @@
-import CartHelper from "../utils/CartHelper"
-
 const initialState = {
-    cart: CartHelper.getCart() || []
+    cart: JSON.parse(localStorage.getItem("cart")) || []
 }
 
 export default (state = initialState, action) => {
@@ -12,21 +10,27 @@ export default (state = initialState, action) => {
     let cart = []
     switch(action.type) {
         case "ADD_TO_CART":
-            CartHelper.addToCart(action.product)
             cart = [...newState.cart]
-            cart.push(action.product)
+            var found = cart.find((cartItem) => cartItem.variant.id === action.cartItem.variant.id)
+            if (found) {
+                found.quantity = parseInt(found.quantity) + parseInt(action.cartItem.quantity)
+                return newState
+            }
+
+            cart.push(action.cartItem)
+            localStorage.setItem("cart", JSON.stringify(cart))
             newState.cart = cart
             return newState
         case "REMOVE_FROM_CART":
-            CartHelper.removeFromCart(action.product)
             cart = [...newState.cart]
-            var filteredCart = cart.filter((product) => {
-                return product.id !== action.product.id
+            var filteredCart = cart.filter((cartItem) => {
+                return cartItem.variant.id !== action.cartItem.variant.id
             })
+            localStorage.setItem("cart", JSON.stringify(filteredCart))
             newState.cart = filteredCart
             return newState
         case "CLEAR_CART":
-            CartHelper.clearCart()
+            localStorage.setItem("cart", JSON.stringify([]))
             newState.cart = []
             return newState
         default:

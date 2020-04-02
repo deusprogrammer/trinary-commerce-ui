@@ -5,7 +5,6 @@ import Product from './routes/Product';
 import Categories from './routes/Categories';
 import Category from './routes/Category';
 import Cart from './routes/Cart';
-import Checkout from './routes/Checkout';
 
 import CartWidget from './components/CartWidget';
 
@@ -17,6 +16,7 @@ import SearchWidget from './components/SearchWidget';
 import ResultDisplay from './routes/ResultDisplay';
 
 import connect from './utils/ReduxHelper';
+import CartSuccess from './routes/CartSuccess';
 
 class App extends React.Component {
     render() {
@@ -46,7 +46,7 @@ class App extends React.Component {
                                 <Route path={`${process.env.PUBLIC_URL}/products/:id`} exact component={Product} />
                                 <Route path={`${process.env.PUBLIC_URL}/categories/:id/:page`} exact component={Category} />
                                 <Route path={`${process.env.PUBLIC_URL}/cart`} exact component={Cart} />
-                                <Route path={`${process.env.PUBLIC_URL}/checkout`} exact component={Checkout} />
+                                <Route path={`${process.env.PUBLIC_URL}/cart/success`} exact component={CartSuccess} />
                                 <Redirect to={`${process.env.PUBLIC_URL}/`} />
                             </Switch>
                         </div>
