@@ -8,20 +8,20 @@ export default (props) => {
                 <ul className="pagination">
                     { props.page > 1 ?
                     <li className="page-item"> 
-                        <Link className="page-link"                
+                        <span className="page-link"                
                             onClick={() => {props.onPageChange(props.page - 1)}}>
                             Previous
-                        </Link>
+                        </span>
                     </li> : null
                     }
                     <li className="page-item">
                         <span className="page-link">{props.page}</span>
                     </li>
                     <li className="page-item">{ props.hasNext ?
-                        <Link className="page-link"
+                        <span className="page-link"
                             onClick={() => {props.onPageChange(props.page + 1)}}>
                                 Next
-                        </Link> : null
+                        </span> : null
                     }</li>
                 </ul>
             </div>

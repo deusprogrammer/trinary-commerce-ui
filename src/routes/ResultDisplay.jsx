@@ -13,21 +13,26 @@ class ResultDisplay extends React.Component {
     }
 
     componentDidMount() {
-        this.getPage(parseInt(this.props.match.params.page))
+        this.getPage(this.props.match.params.search, parseInt(this.props.match.params.page))
     }
 
-    componentWillReceiveProps() {
-        this.getPage(parseInt(this.props.match.params.page))
+    componentWillReceiveProps(newProps) {
+        console.log("PROPS: " + JSON.stringify(newProps))
+        this.getPage(newProps.match.params.search, parseInt(newProps.match.params.page))
     }
 
-    getPage = (page) => {
+    getPage = (search, page) => {
         if (page < 0) {
             return
         }
 
-        axios.get(`${config.baseUrl}/products?page=${page - 1}&pageSize=10&search=${atob(this.props.match.params.search)}`)
+        axios.get(`${config.baseUrl}/products?page=${page - 1}&pageSize=10&search=${atob(search)}`)
             .then(productResponse => {
-                this.setState({products: productResponse.data, hasNext: productResponse.headers['X-Next-Page'] !== null})
+                let hasNext = false
+                if (productResponse.headers['x-next-page']) {
+                    hasNext = true
+                }
+                this.setState({products: productResponse.data, hasNext})
             })
             .catch(error => {
                 this.setState({error})
