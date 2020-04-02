@@ -19,10 +19,11 @@ class Cart extends React.Component {
 
         axios.post(`${config.baseUrl}/orders`, {
             items,
-            redirectUrl: "https://deusprogrammer.com/util/commerce/cart/success"
+            redirectUrl: "http://localhost:3000/util/commerce/cart/success"
+            //redirectUrl: "https://deusprogrammer.com/util/commerce/cart/success"
         })
             .then((response) => {
-                window.location = response.data.checkoutUrl
+                window.location = response.data.checkoutUrl;
             })
             .catch((error) => {
                 toast("Failed to create order on square", {type: "error"});
