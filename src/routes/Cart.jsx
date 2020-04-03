@@ -19,7 +19,7 @@ class Cart extends React.Component {
 
         axios.post(`${config.baseUrl}/orders`, {
             items,
-            //redirectUrl: "http://localhost:3000/util/commerce/cart/success"
+            location: this.props.currentLocation,
             redirectUrl: "https://deusprogrammer.com/util/commerce/cart/success"
         })
             .then((response) => {
@@ -37,9 +37,9 @@ class Cart extends React.Component {
                 {this.props.cartContents && this.props.cartContents.length > 0 ?
                     <div>
                         <div style={{display: "table"}} className="cart-product">
-                            {this.props.cartContents.map(cartItem => {
+                            {this.props.cartContents.map((cartItem, index) => {
                                 return (
-                                    <div style={{display: "table-row"}}>
+                                    <div key={`cart-item-${index}`} style={{display: "table-row"}}>
                                         <div style={{display: "table-cell", verticalAlign: "middle", paddingRight: "10px"}}>
                                             <img alt="product" style={{width: "100px", height: "100px", objectFit: "contain"}} src={cartItem.product.imageHref} />
                                         </div>

@@ -37,28 +37,48 @@ class AddToCartWidget extends React.Component  {
                         </select>
                     </span> : null
                 }
-                <span style={{marginRight: "10px"}}>
-                    <strong>Quantity: </strong>
-                    <input style={{width: "50px"}} type="number" value={this.state.quantity} onChange={(e) => {this.onQuantityChange(e.target.value)}}></input>
-                </span>
-                <span style={{marginRight: "10px"}}>
-                    <strong>Price: </strong> {
-                        Number(variant.price)
-                            .toLocaleString('en-US',
-                            {
-                                style: 'currency',
-                                currency: variant.currency
-                            })
-                    }
-                </span>
-                <button className="btn btn-primary" 
-                    onClick={(e) => {
-                        this.notify(this.props.product, this.state.quantity);
-                        this.setState({quantity: 1, variantChosenIndex: 0})
-                        this.props.addToCart(this.props.product, this.props.product.variations[this.state.variantChosenIndex], this.state.quantity);
-                    }}>
-                    Add to Cart
-                </button>
+
+                { this.props.product.variations[this.state.variantChosenIndex].stock && this.props.product.variations[this.state.variantChosenIndex].stock[this.props.currentLocation.id] > 0 ?
+                    <span>
+                        <span style={{marginRight: "10px"}}>
+                            <strong>Quantity: </strong>
+                            <input style={{width: "50px"}} type="number" value={this.state.quantity} onChange={(e) => {this.onQuantityChange(e.target.value)}}></input>
+                        </span>
+                        <span style={{marginRight: "10px"}}>
+                            <strong>Price: </strong> {
+                                Number(variant.price)
+                                    .toLocaleString('en-US',
+                                    {
+                                        style: 'currency',
+                                        currency: variant.currency
+                                    })
+                            }
+                        </span>
+                        <button className="btn btn-primary" 
+                            onClick={(e) => {
+                                this.notify(this.props.product, this.state.quantity);
+                                this.setState({quantity: 1, variantChosenIndex: 0})
+                                this.props.addToCart(this.props.product, this.props.product.variations[this.state.variantChosenIndex], this.state.quantity);
+                            }}>
+                            Add to Cart
+                        </button>
+                    </span> :
+                    <span>
+                        <span style={{marginRight: "10px"}}>
+                            <strong>Price: </strong> {
+                                Number(variant.price)
+                                    .toLocaleString('en-US',
+                                    {
+                                        style: 'currency',
+                                        currency: variant.currency
+                                    })
+                            }
+                        </span>
+                        <span>
+                            Sold Out
+                        </span>
+                    </span>
+                }
             </div>
         );
     }

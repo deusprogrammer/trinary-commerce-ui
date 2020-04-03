@@ -1,5 +1,7 @@
 const initialState = {
-    cart: JSON.parse(localStorage.getItem("cart")) || []
+    cart: JSON.parse(localStorage.getItem("cart")) || [],
+    locations: [],
+    currentLocation: {id: ""}
 }
 
 export default (state = initialState, action) => {
@@ -9,6 +11,12 @@ export default (state = initialState, action) => {
     let newState = {...state}
     let cart = []
     switch(action.type) {
+        case "SET_CURRENT_LOCATION":
+            newState.currentLocation = action.location
+            return newState
+        case "SET_LOCATIONS":
+            newState.locations = action.locations
+            return newState
         case "ADD_TO_CART":
             cart = [...newState.cart]
             var found = cart.find((cartItem) => cartItem.variant.id === action.cartItem.variant.id)

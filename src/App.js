@@ -1,24 +1,37 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, Redirect, Link} from 'react-router-dom';
 
+import axios from 'axios';
+
 import Product from './routes/Product';
 import Categories from './routes/Categories';
 import Category from './routes/Category';
 import Cart from './routes/Cart';
+import Home from './routes/Home';
+import CartSuccess from './routes/CartSuccess';
+import ResultDisplay from './routes/ResultDisplay';
 
 import CartWidget from './components/CartWidget';
+import SearchWidget from './components/SearchWidget';
+import LocationWidget from './components/LocationWidget';
+
+import connect from './utils/ReduxHelper';
+
+import config from './utils/config';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
-import Home from './routes/Home';
-import SearchWidget from './components/SearchWidget';
-import ResultDisplay from './routes/ResultDisplay';
-
-import connect from './utils/ReduxHelper';
-import CartSuccess from './routes/CartSuccess';
 
 class App extends React.Component {
+    componentDidMount() {
+        axios.get(config.baseUrl + "/locations")
+            .then(response => {
+                this.props.setLocations(response.data)
+                this.props.setCurrentLocation(response.data[0])
+            })
+    }
+
     render() {
         return (
             <Router>
@@ -32,6 +45,7 @@ class App extends React.Component {
                         <div className="header-bar row">
                             <div className="col-2" style={{textAlign: "left"}}><Link to="/">Home</Link></div>
                             <div className="col" style={{textAlign: "center"}}><SearchWidget /></div>
+                            <div className="col" style={{textAlign: "center"}}><LocationWidget /></div>
                             <div className="col-2" style={{textAlign: "right"}}><CartWidget contents={this.props.cartContents} /></div>
                         </div>
                     </header>
