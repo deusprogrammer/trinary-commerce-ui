@@ -15,6 +15,24 @@ class AddToCartWidget extends React.Component  {
     }
 
     onQuantityChange(quantity) {
+        let stock = parseInt(this.props.product.variations[this.state.variantChosenIndex].stock[this.props.currentLocation.id]);
+        if (stock < 1) {
+            console.log("STOCK NEGATIVE");
+            stock = 1;
+        }
+        quantity = parseInt(quantity);
+
+        console.log("STOCK:    " + stock);
+        console.log("QUANTITY: " + quantity);
+
+        if (quantity > stock) {
+            console.log("QUANTITY > STOCK");
+            quantity = stock
+        } else if (quantity < 0) {
+            console.log("QUANTITY < 0")
+            quantity = 0
+        }
+
         this.setState({quantity});
     }
 
@@ -37,7 +55,6 @@ class AddToCartWidget extends React.Component  {
                         </select>
                     </span> : null
                 }
-
                 { this.props.product.variations[this.state.variantChosenIndex].stock && this.props.product.variations[this.state.variantChosenIndex].stock[this.props.currentLocation.id] > 0 ?
                     <span>
                         <span style={{marginRight: "10px"}}>
