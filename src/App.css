@@ -60,7 +60,7 @@ a {
 .product-price {
   position: absolute;
   bottom: 0px;
-  text-align: center;
+  text-align: left;
   clear: both;
   width: 100%;
 }

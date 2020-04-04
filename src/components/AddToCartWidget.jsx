@@ -38,6 +38,8 @@ class AddToCartWidget extends React.Component  {
 
     render() {
         let variant = this.props.product.variations[this.state.variantChosenIndex];
+        let inCart = this.props.cartMap[variant.id] ? this.props.cartMap[variant.id] : 0;
+        let stock = this.props.product.variations[this.state.variantChosenIndex].stock;
 
         return (
             <div className="product-price">
@@ -53,7 +55,7 @@ class AddToCartWidget extends React.Component  {
                         </select>
                     </span> : null
                 }
-                { this.props.product.variations[this.state.variantChosenIndex].stock && this.props.product.variations[this.state.variantChosenIndex].stock[this.props.currentLocation.id] > 0 ?
+                { stock && stock[this.props.currentLocation.id] > 0 ?
                     <span>
                         <span style={{marginRight: "10px"}}>
                             <strong>Quantity: </strong>
@@ -69,7 +71,7 @@ class AddToCartWidget extends React.Component  {
                                     })
                             }
                         </span>
-                        <button className="btn btn-primary" 
+                        <button style={{marginRight: "10px"}} className="btn btn-primary" 
                             onClick={(e) => {
                                 this.notify(this.props.product, this.state.quantity);
                                 this.setState({quantity: 1, variantChosenIndex: 0})
@@ -77,6 +79,14 @@ class AddToCartWidget extends React.Component  {
                             }}>
                             Add to Cart
                         </button>
+                        <span style={{marginRight: "10px"}}>
+                            {stock[this.props.currentLocation.id] - inCart - this.state.quantity + 1} in stock
+                        </span>
+                        { inCart > 0 ?
+                            <span style={{marginRight: "10px"}}>
+                                {inCart} in cart
+                            </span> : null
+                        }
                     </span> :
                     <span>
                         <span style={{marginRight: "10px"}}>

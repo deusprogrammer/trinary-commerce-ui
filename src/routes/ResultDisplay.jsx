@@ -19,7 +19,10 @@ class ResultDisplay extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        console.log("PROPS: " + JSON.stringify(newProps))
+        if (newProps.match.params.id === this.props.match.params.id && newProps.match.params.page === this.props.match.params.id) {
+            return
+        }
+
         this.getPage(newProps.match.params.search, parseInt(newProps.match.params.page))
     }
 

@@ -34,6 +34,7 @@ export default (state = initialState, action) => {
             var found = cart.find((cartItem) => cartItem.variant.id === action.cartItem.variant.id)
             if (found) {
                 found.quantity = parseInt(found.quantity) + parseInt(action.cartItem.quantity)
+                newState.cartMap = convertCartToMap(cart)
                 return newState
             }
 
@@ -50,10 +51,12 @@ export default (state = initialState, action) => {
             })
             localStorage.setItem("cart", JSON.stringify(filteredCart))
             newState.cart = filteredCart
+            newState.cartMap = convertCartToMap(filteredCart)
             return newState
         case "CLEAR_CART":
             localStorage.setItem("cart", JSON.stringify([]))
             newState.cart = []
+            newState.cartMap = {}
             return newState
         default:
             return newState

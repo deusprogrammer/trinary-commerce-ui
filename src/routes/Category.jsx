@@ -24,11 +24,15 @@ export default class Category extends React.Component {
             })
     }
 
-    componentWillReceiveProps() {
-        axios.get(`${config.baseUrl}/categories/${this.props.match.params.id}`)
+    componentWillReceiveProps(newProps) {
+        if (newProps.match.params.id === this.props.match.params.id && newProps.match.params.page === this.props.match.params.page) {
+            return
+        }
+
+        axios.get(`${config.baseUrl}/categories/${newProps.match.params.id}`)
             .then(categoryResponse => {
                 this.setState({category: categoryResponse.data.name})
-                this.getPage(parseInt(this.props.match.params.page))
+                this.getPage(parseInt(newProps.match.params.page))
             }).catch(error => {
                 this.setState({error})
             })
