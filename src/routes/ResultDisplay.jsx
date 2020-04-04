@@ -1,15 +1,17 @@
 import React from 'react';
 import axios from 'axios';
+import ClipLoader from 'react-spinners/ClipLoader';
 
-import ProductList from '../components/ProductList'
+import ProductList from '../components/ProductList';
 
-import config from '../utils/config'
+import config from '../utils/config';
 
 class ResultDisplay extends React.Component {
     state = {
         products: null,
         hasNext: false,
-        error: null
+        error: null,
+        loading: true
     }
 
     componentDidMount() {
@@ -26,16 +28,18 @@ class ResultDisplay extends React.Component {
             return
         }
 
+        this.setState({loading: true, products: null})
         axios.get(`${config.baseUrl}/products?page=${page - 1}&pageSize=10&search=${atob(search)}`)
             .then(productResponse => {
+                console.log("HEADERS: " + JSON.stringify(productResponse.headers))
                 let hasNext = false
                 if (productResponse.headers['x-next-page']) {
                     hasNext = true
                 }
-                this.setState({products: productResponse.data, hasNext})
+                this.setState({products: productResponse.data, hasNext, loading: false})
             })
             .catch(error => {
-                this.setState({error})
+                this.setState({error, loading: false})
             })
     }
 
@@ -43,6 +47,10 @@ class ResultDisplay extends React.Component {
         return (
             <div>
                 <h3>Search Results</h3>
+                <ClipLoader 
+                    size="300px"
+                    loading={this.state.loading}
+                />
                 { this.state.error ?
                     <p>{this.state.error}</p>
                     :

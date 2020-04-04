@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import config from '../utils/config';
 import ProductList from '../components/ProductList';
@@ -7,6 +8,7 @@ import ProductList from '../components/ProductList';
 export default class Category extends React.Component {
     state = {
         category: null,
+        loading: true,
         products: null,
         hasNext: false,
         error: null
@@ -37,18 +39,28 @@ export default class Category extends React.Component {
             return
         }
 
+        this.setState({loading: true, products: null})
         axios.get(`${config.baseUrl}/categories/${this.props.match.params.id}/products?page=${page - 1}&pageSize=10`)
             .then(productResponse => {
-                this.setState({products: productResponse.data, hasNext: productResponse.headers['X-Next-Page'] !== null})
+                console.log("HEADERS: " + JSON.stringify(productResponse.headers))
+                let hasNext = false
+                if (productResponse.headers['x-next-page']) {
+                    hasNext = true
+                }
+                this.setState({products: productResponse.data, hasNext, loading: false})
             })
             .catch(error => {
-                this.setState({error})
+                this.setState({error, loading: false})
             })
     }
 
     render() {
         return (
             <div>
+                <ClipLoader 
+                    size="300px"
+                    loading={this.state.loading}
+                />
                 <h3>{this.state.category ? this.state.category.name : ""}</h3>
                 { this.state.error ?
                     <p>{this.state.error}</p>

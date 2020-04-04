@@ -5,9 +5,6 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-    console.log(`STATE:  ${JSON.stringify(state)}`)
-    console.log(`ACTION: ${JSON.stringify(action)}`)
-
     let newState = {...state}
     let cart = []
     switch(action.type) {
