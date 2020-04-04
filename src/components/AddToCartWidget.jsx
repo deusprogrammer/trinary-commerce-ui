@@ -15,22 +15,20 @@ class AddToCartWidget extends React.Component  {
     }
 
     onQuantityChange(quantity) {
-        let stock = parseInt(this.props.product.variations[this.state.variantChosenIndex].stock[this.props.currentLocation.id]);
-        if (stock < 1) {
-            console.log("STOCK NEGATIVE");
-            stock = 1;
-        }
         quantity = parseInt(quantity);
 
-        console.log("STOCK:    " + stock);
-        console.log("QUANTITY: " + quantity);
+        let stock = this.props.product.variations[this.state.variantChosenIndex].stock[this.props.currentLocation.id];
+        let variant = this.props.product.variations[this.state.variantChosenIndex];
+        let quantityAlreadyInCart = this.props.cartMap[variant.id] || 0;
+        let totalQuantity = quantity + quantityAlreadyInCart;
+        if (stock < 1) {
+            stock = 1;
+        }
 
-        if (quantity > stock) {
-            console.log("QUANTITY > STOCK");
-            quantity = stock
-        } else if (quantity < 0) {
-            console.log("QUANTITY < 0")
-            quantity = 0
+        if (totalQuantity > stock) {
+            quantity = stock - quantityAlreadyInCart;
+        } else if (quantity < 1) {
+            quantity = 1;
         }
 
         this.setState({quantity});

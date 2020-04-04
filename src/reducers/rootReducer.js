@@ -1,5 +1,20 @@
+const convertCartToMap = (cart) => {
+    let cartMap = {}
+
+    if (!cart) {
+        return cartMap;
+    }
+
+    cart.forEach(item => {
+        cartMap[item.variant.id] = item.quantity;
+    })
+
+    return cartMap;
+}
+
 const initialState = {
     cart: JSON.parse(localStorage.getItem("cart")) || [],
+    cartMap: convertCartToMap(JSON.parse(localStorage.getItem("cart")) || []),
     locations: [],
     currentLocation: {id: ""}
 }
@@ -24,7 +39,9 @@ export default (state = initialState, action) => {
 
             cart.push(action.cartItem)
             localStorage.setItem("cart", JSON.stringify(cart))
+
             newState.cart = cart
+            newState.cartMap = convertCartToMap(cart)
             return newState
         case "REMOVE_FROM_CART":
             cart = [...newState.cart]

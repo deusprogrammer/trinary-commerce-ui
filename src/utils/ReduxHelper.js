@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 let mapStateToProps = (state) => {
     return {
         cartContents: state.cart,
+        cartMap: state.cartMap,
         locations: state.locations,
         currentLocation: state.currentLocation
     }
