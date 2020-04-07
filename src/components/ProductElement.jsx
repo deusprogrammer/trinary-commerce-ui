@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications'
 
 import connect from '../utils/ReduxHelper';
+import { FaCartPlus } from 'react-icons/fa';
 
 let ProductElement = (props) => {
     let component = null;
@@ -55,7 +56,7 @@ let ProductElement = (props) => {
                                 props.addToCart(props.product);
                                 e.stopPropagation();
                             }}>
-                            Add to Cart
+                            <FaCartPlus size='1.5em'/> Add to Cart
                         </button>
                     </div>
                 </div>

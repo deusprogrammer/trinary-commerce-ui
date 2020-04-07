@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-
 import config from '../utils/config';
 import CategoryList from '../components/CategoryList';
 
